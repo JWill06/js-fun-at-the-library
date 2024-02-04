@@ -1,6 +1,6 @@
 function createLibrary(name, shelves){
-  if (!name || shelves <= 0) {
-    return [];
+  if (!name) {
+    return "";
   }
 
   var library = {
@@ -39,14 +39,19 @@ function addBook(library, book){
     
   function takeStock(library, genre){ 
     if(genre === undefined){
-      return `There are a total of ${Object.values(library.shelves).length} books at the ${library.name}.`
+      var books = 0;
+      var shelves = Object.values(library.shelves);
+
+      for (i = 0; i < shelves.length; i++){
+      books += shelves[i].length;
+      }
+      return `There are a total of ${books} books at the ${library.name}.`;
     }
-    var stock = 0;
-    for(i = 0; i < library.shelves[genre].length; i++){
-      stock += library.shelves[genre].length;
-      return `There are a total of ${stock} ${genre} books at the ${library.name}.`
+    var stock = library.shelves[genre].length;
+    return `There are a total of ${stock} ${genre} books at the ${library.name}.`;
     }
-  }
+  
+  
 
 
 
